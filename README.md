@@ -1,17 +1,26 @@
-import random
+const config = {
+  testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  moduleNameMapper: {
+    '^react-twc$': '<rootDir>/.jest/mocks/react-twc.js',
+  },
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.ts(x)?',
+    '!src/pages/**/*.ts(x)?',
+    '!src/templates/**/*.ts(x)?',
+    '!src/services/**/*.ts(x)?',
+    '!src/styles/**/*.ts',
+    '!src/types/**/*.ts',
 
-number_to_guess = random.randint(1, 100)
- 
-while True:
-     try:
-       guess = int(input("Guess the number between 1 and 100:"))
-       if guess < number_to_guess:
-         print("Too low!")
-       elif guess > number_to_guess:
-         print("Too high!")
-       else:
-         print("Congratulation!")
-         break
-     except ValueError:
-        print("please enter a valid number.")
-     # guess_number.py
+    // Temp
+
+    '!src/app/**/*.ts(x)?',
+    '!src/generators/**/*.ts(x)?',
+    '!src/components/**/*.ts(x)?',
+  ],
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts'],
+  modulePaths: ['<rootDir>/src/', '<rootDir>/.jest/'],
+};
+
+export default config;
